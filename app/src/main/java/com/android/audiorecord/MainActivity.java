@@ -4,12 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
@@ -36,7 +34,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Chronometer mTime;
     private FrameLayout mFrameLayout;
     private AudioRecorder mAudioRecorder;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,12 +64,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
     }
 
-
-
     private long sign = 0;
     @Override
     public void onClick(View v) {
-
         switch (v.getId()){
             case R.id.list_btn:
                 Intent intent = new Intent(MainActivity.this,RecordListActivity.class);
@@ -140,6 +134,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 default:
         }
     }
-
-
 }

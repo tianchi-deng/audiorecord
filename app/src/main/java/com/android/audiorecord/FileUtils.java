@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtils {
-
-
     private  static String rootPath="Music";
     //原始文件(不能播放)
     private final static String AUDIO_PCM_BASEPATH = "/"+rootPath+"/pcm/";
@@ -40,7 +38,6 @@ public class FileUtils {
             }
             mAudioRawPath = fileBasePath + fileName;
         }
-
         return mAudioRawPath;
     }
 
@@ -51,7 +48,6 @@ public class FileUtils {
         if(!isSdcardExit()){
             throw new IllegalStateException("sd card no found");
         }
-
         String mAudioWavPath = "";
         if (isSdcardExit()) {
             if (!fileName.endsWith(".wav")) {

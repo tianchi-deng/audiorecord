@@ -40,7 +40,6 @@ public class Pcmplayer {
         Log.e("dtc", "playInModeStream: file "+file.getPath());
         final int minBufferSize = AudioTrack.getMinBufferSize(44100, channelConfig, AudioFormat.ENCODING_PCM_16BIT);
         audioTrack = new AudioTrack(AudioManager.STREAM_MUSIC, 44100, AudioFormat.CHANNEL_OUT_MONO,AudioFormat.ENCODING_PCM_16BIT, minBufferSize, AudioTrack.MODE_STREAM);
-
         audioTrack.play();
         try {
             final FileInputStream in = new FileInputStream(file);
@@ -57,7 +56,6 @@ public class Pcmplayer {
                             if (count != 0 && count != -1) {
                                 Log.e("dtc", "run: 1");
                                 audioTrack.write(data,0,count);
-
                             }
                         }
                     }catch (IOException e) {e.printStackTrace();}
@@ -110,6 +108,4 @@ public class Pcmplayer {
 
         }.execute();
     }
-
-
 }

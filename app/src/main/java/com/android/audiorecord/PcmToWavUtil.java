@@ -38,7 +38,6 @@ public class PcmToWavUtil {
      */
     private int mChannel;
 
-
     /**
      * @param sampleRate sample rate、采样率
      * @param channel channel、声道
@@ -49,7 +48,6 @@ public class PcmToWavUtil {
         this.mChannel = channel;
         this.mBufferSize = AudioRecord.getMinBufferSize(mSampleRate, mChannel, encoding);
     }
-
 
     /**
      * pcm文件转wav文件

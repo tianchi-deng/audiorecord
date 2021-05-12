@@ -2,7 +2,6 @@ package com.android.audiorecord;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.media.AudioTrack;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,7 +15,6 @@ public class RecordListActivity extends AppCompatActivity {
     private ListView mListView;
     List<File> files = new ArrayList<>();
     RecordListAdapter adapter;
-
     private static final String TAG = "RecordListActivity";
     private Pcmplayer pcmplayer;
     @Override
