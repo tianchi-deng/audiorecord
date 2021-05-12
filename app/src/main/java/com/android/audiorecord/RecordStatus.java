@@ -1,4 +1,4 @@
-package com.android.avtest;
+package com.android.audiorecord;
 
 public enum RecordStatus {
     STATUS_READY,

@@ -1,20 +1,12 @@
-package com.android.avtest;
+package com.android.audiorecord;
 
 import android.media.AudioFormat;
 import android.media.AudioRecord;
-import android.util.Log;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class PcmToWavUtil {
@@ -76,21 +68,13 @@ public class PcmToWavUtil {
         }
         FileInputStream in ;
         FileOutputStream out;
-//        long totalAudioLen;
         long totalDataLen;
         long longSampleRate = mSampleRate;
         int channels = mChannel == AudioFormat.CHANNEL_IN_MONO ? 1 : 2;
         long byteRate = 16 * mSampleRate * channels / 8;
         byte[] data = new byte[mBufferSize];
         try {
-
-//            for (int i = 0; i < inFilenames.size(); i++) {
-//                in = new FileInputStream(inFilenames.get(i));
-//                totalAudioLen += in.getChannel().size();
-//                in.close();
-//            }
             out = new FileOutputStream(outFilename);
-//            totalAudioLen = in.getChannel().size();
             totalDataLen = totalAudioLen + 36;
 
             WaveHeader.writeWaveFileHeader(out, totalAudioLen, totalDataLen,
@@ -102,8 +86,6 @@ public class PcmToWavUtil {
                 }
                 in.close();
             }
-
-//            in.close();
             out.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -120,12 +102,10 @@ public class PcmToWavUtil {
         long byteRate = 16 * mSampleRate * channels / 8;
         byte[] data = new byte[mBufferSize];
         try {
-
             in = new FileInputStream(inFilename);
             out = new FileOutputStream(outFilename);
             totalAudioLen = in.getChannel().size();
             totalDataLen = totalAudioLen + 36;
-
             WaveHeader.writeWaveFileHeader(out, totalAudioLen, totalDataLen,
                     longSampleRate, channels, byteRate);
             while (in.read(data) != -1) {

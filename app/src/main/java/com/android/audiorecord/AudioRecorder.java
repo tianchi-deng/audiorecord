@@ -1,11 +1,9 @@
-package com.android.avtest;
+package com.android.audiorecord;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
+
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaRecorder;
-import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
@@ -70,7 +68,6 @@ public class AudioRecorder {
             currentFileName += files.size();
         }
         files.add(currentFileName);
-//        final File file = new File(context.getExternalFilesDir(Environment.DIRECTORY_MUSIC), "record.pcm");
         final File file = new File(FileUtils.getPcmFileAbsolutePath(currentFileName));
         if (!file.mkdirs()) {
             Log.d(TAG, "directory not created!");
@@ -80,7 +77,6 @@ public class AudioRecorder {
         }
         mAudioRecord.startRecording();
         status = RecordStatus.STATUS_START;
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -143,11 +139,6 @@ public class AudioRecorder {
                     @Override
                     public void run() {
                         Log.e(TAG, "fileName: "+fileName );
-//                        if (PcmToWavUtil.mergePCMFilesToWAVFile(filePaths,FileUtils.getWavFileAbsolutePath(fileName))) {
-//                            Log.e(TAG, "convert success" );
-//                        }else{
-//
-//                        }
                         for(String name : filePaths){
                             Log.e(TAG, "filepath " + name );
                         }
@@ -162,8 +153,6 @@ public class AudioRecorder {
            e.printStackTrace();
         }
     }
-
-
 
     public RecordStatus getStatus() {
         return status;

@@ -1,4 +1,4 @@
-package com.android.avtest;
+package com.android.audiorecord;
 
 import android.os.Environment;
 import android.text.TextUtils;
@@ -88,7 +88,6 @@ public class FileUtils {
     public static List<File> getPcmFiles() {
         List<File> list = new ArrayList<>();
         String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath() + AUDIO_PCM_BASEPATH;
-
         File rootFile = new File(fileBasePath);
         if (!rootFile.exists()) {
         } else {
@@ -97,10 +96,8 @@ public class FileUtils {
             for (File file : files) {
                 list.add(file);
             }
-
         }
         return list;
-
     }
 
     /**
@@ -111,7 +108,6 @@ public class FileUtils {
     public static List<File> getWavFiles() {
         List<File> list = new ArrayList<>();
         String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath() + AUDIO_WAV_BASEPATH;
-
         File rootFile = new File(fileBasePath);
         if (!rootFile.exists()) {
         } else {
@@ -119,7 +115,6 @@ public class FileUtils {
             for (File file : files) {
                 list.add(file);
             }
-
         }
         return list;
     }

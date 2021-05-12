@@ -1,9 +1,5 @@
-package com.android.avtest;
+package com.android.audiorecord;
 
-
-import android.media.AudioFormat;
-import android.media.AudioRecord;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -11,9 +7,6 @@ import java.io.IOException;
  * 将pcm音频文件转换为wav音频文件
  */
 public class WaveHeader {
-
-
-
 
     /**
      * 加入wav文件头

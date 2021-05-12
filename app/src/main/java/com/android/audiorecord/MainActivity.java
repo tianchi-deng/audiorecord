@@ -1,4 +1,4 @@
-package com.android.avtest;
+package com.android.audiorecord;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,34 +6,20 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.content.IntentFilter;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.AudioFormat;
-import android.media.AudioRecord;
-import android.media.AudioTrack;
-import android.media.MediaRecorder;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
+
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
-import android.widget.TextView;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private static final int MY_PERMISSIONS_REQUET = 1001;
@@ -43,18 +29,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Manifest.permission.RECORD_AUDIO,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
-
     private List<String> mPermissionList = new ArrayList<>();
-    private Button mCancel;
+    private Button mRrecords;
     private Button mStartBtn;
     private Button mCompleteBtn;
     private Chronometer mTime;
-
-    private AudioRecord mAudioRecord;
-    private AudioTrack mAudioTrack;
-    private byte[] mAudioData;
-    private FileInputStream mFileInputStream;
-
+    private FrameLayout mFrameLayout;
     private AudioRecorder mAudioRecorder;
 
 
@@ -67,16 +47,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void init() {
-        mCancel = findViewById(R.id.cancel);
+        mFrameLayout = findViewById(R.id.layout_fragment);
+        mRrecords = findViewById(R.id.list_btn);
         mStartBtn = findViewById(R.id.start);
         mCompleteBtn = findViewById(R.id.complete);
         mTime = findViewById(R.id.time);
         mAudioRecorder = AudioRecorder.getInstance();
-//        mCancel.setOnClickListener(this);
-        mCancel.setVisibility(View.GONE);
+        mRrecords.setOnClickListener(this);
         mCompleteBtn.setVisibility(View.GONE);
         mStartBtn.setOnClickListener(this);
-//        mCompleteBtn.setOnClickListener(this);
         mTime.setOnChronometerTickListener(new Chronometer.OnChronometerTickListener() {
             @Override
             public void onChronometerTick(Chronometer chronometer) {
@@ -95,12 +74,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
 
         switch (v.getId()){
-            case R.id.cancel:
-
+            case R.id.list_btn:
+                Intent intent = new Intent(MainActivity.this,RecordListActivity.class);
+                startActivity(intent);
                 break;
             case R.id.start:
-//                mAudioRecorder.createAudioRecord();
-
                 if (mAudioRecorder.getStatus() == RecordStatus.STATUS_READY) {
                     mAudioRecorder.startRecord();
                     mStartBtn.setText("Pause");
